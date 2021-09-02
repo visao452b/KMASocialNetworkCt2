@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/bottom_home"
+        android:title="@string/bottom_home"
+        android:icon="@drawable/ic_home"/>
+    <item android:id="@+id/bottom_group"
+        android:title="@string/bottom_group"
+        android:icon="@drawable/ic_group"/>
+    <item android:id="@+id/bottom_friend"
+        android:title="@string/bottom_friend"
+        android:icon="@drawable/ic_favorite"/>
+    <item android:id="@+id/bottom_notification"
+        android:title="@string/bottom_notification"
+        android:icon="@drawable/ic_notification"/>
+    <item android:id="@+id/bottom_menu"
+        android:title="@string/bottom_menu"
+        android:icon="@drawable/ic_menu"/>
+</menu>

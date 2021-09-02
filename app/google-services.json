@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1005913745418",
+    "firebase_url": "https://kmasocialnetworkct2-default-rtdb.firebaseio.com",
+    "project_id": "kmasocialnetworkct2",
+    "storage_bucket": "kmasocialnetworkct2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005913745418:android:629f472cff3aae436697f3",
+        "android_client_info": {
+          "package_name": "com.example.kmasocialnetworkct2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005913745418-007tbr7152jc196kaket28tfga9qguke.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kmasocialnetworkct2",
+            "certificate_hash": "faf163e29631b76ed427796ce89ced04c5bd8a75"
+          }
+        },
+        {
+          "client_id": "1005913745418-4u2lu5aq1lreqto7ag6bf3dcal6scemt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYdw9R5SHjAHoInKZ6XJI-B8S82Toi-Xw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005913745418-4u2lu5aq1lreqto7ag6bf3dcal6scemt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

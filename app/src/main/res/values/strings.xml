@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">KMA Social Network</string>
+    <string name="bottom_home">Home</string>
+    <string name="bottom_group">Groups</string>
+    <string name="bottom_menu">Menu</string>
+    <string name="bottom_friend">Friends</string>
+    <string name="bottom_notification">Noti</string>
+
+</resources>
