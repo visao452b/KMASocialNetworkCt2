@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/btnSearch"
+        android:title="Search"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_search" />
+    <item android:id="@+id/btnMessage"
+        android:title="Message"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_chat"/>
+    <item android:id="@+id/btnLogout"
+        android:title="Logout"
+        app:showAsAction="never"/>
+</menu>

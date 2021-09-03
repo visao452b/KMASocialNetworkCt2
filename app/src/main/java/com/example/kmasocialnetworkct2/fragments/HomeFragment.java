@@ -14,6 +14,9 @@ import com.example.kmasocialnetworkct2.databinding.FragmentsHomeBinding;
 
 public class HomeFragment extends Fragment {
 
+    public HomeFragment() {
+    }
+
     FragmentsHomeBinding binding;
 
     @Nullable
@@ -21,6 +24,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull @org.jetbrains.annotations.NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         binding = FragmentsHomeBinding.inflate(inflater, container, false);
+
 
         return binding.getRoot();
     }

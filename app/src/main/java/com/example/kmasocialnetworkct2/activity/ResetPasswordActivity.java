@@ -27,7 +27,6 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        getSupportActionBar().hide();
 
         progressDialog = new ProgressDialog(ResetPasswordActivity.this);
         progressDialog.setTitle("Reset Password Account");

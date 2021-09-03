@@ -89,13 +89,13 @@ public class FindFriends extends AppCompatActivity {
                         for (int i = 0; i < listFriend.size(); i++){
                             if (listFriend.get(i).getEmail()!= null){
                                 if (listFriend.get(i).getUserId().equals(uId)){
-                                    friend2 = new Friends(listFriend.get(i).getUserName(), listFriend.get(i).getUserId());
+                                    friend2 = new Friends(listFriend.get(i).getUserName(), listFriend.get(i).getUserId(), listFriend.get(i).getProfilepic(), listFriend.get(i).getEmail());
                                 }
 
                                 if (listFriend.get(i).getEmail().equals(binding.edtFindFriends.getText().toString().trim())){
 //                                    binding.tvFriend.setText(listFriend.get(i).getEmail());
 
-                                    friend = new Friends(listFriend.get(i).getUserName(), listFriend.get(i).getUserId());
+                                    friend = new Friends(listFriend.get(i).getUserName(), listFriend.get(i).getUserId(), listFriend.get(i).getProfilepic(), listFriend.get(i).getEmail());
 
                                     binding.userNameFriend.setVisibility(View.VISIBLE);
                                     binding.profileImageFriend.setVisibility(View.VISIBLE);

@@ -1,7 +1,7 @@
 package com.example.kmasocialnetworkct2.models;
 
 public class Friends {
-    String friendName,friendId;
+    String friendName,friendId, profilepic, emailFriend;
     Long friendMsgTimeLast;
 
     public Friends() {
@@ -16,6 +16,29 @@ public class Friends {
         this.friendName = friendName;
         this.friendId = friendId;
         this.friendMsgTimeLast = friendMsgTimeLast;
+    }
+
+    public Friends(String friendName, String friendId, String profilepic, String emailFriend) {
+        this.friendName = friendName;
+        this.friendId = friendId;
+        this.profilepic = profilepic;
+        this.emailFriend = emailFriend;
+    }
+
+    public String getProfilepic() {
+        return profilepic;
+    }
+
+    public void setProfilepic(String profilepic) {
+        this.profilepic = profilepic;
+    }
+
+    public String getEmailFriend() {
+        return emailFriend;
+    }
+
+    public void setEmailFriend(String emailFriend) {
+        this.emailFriend = emailFriend;
     }
 
     public String getFriendName() {

@@ -5,19 +5,43 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.MainActivity">
-    
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarMain"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryYellow" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:elevation="0dp">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:id="@+id/toolbarMain"
+            android:background="@drawable/border_toolbar"
+            android:elevation="0dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.example.kmasocialnetworkct2.function.bTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryRed"
+                    android:text="KMA Social Network"
+                    android:textSize="20dp" />
+
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom_navigation_main"
-        android:layout_below="@+id/toolbarMain"
+        android:layout_below="@id/appbarMain"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp" />
 
