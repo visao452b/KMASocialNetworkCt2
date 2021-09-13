@@ -58,16 +58,18 @@
             android:padding="9dp" />
 
         <LinearLayout
+            android:id="@+id/friendFind"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image_friend"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:padding="5dp"
-                android:src="@drawable/ic_friend"
+                android:src="@drawable/user"
                 android:visibility="visible"/>
 
             <TextView

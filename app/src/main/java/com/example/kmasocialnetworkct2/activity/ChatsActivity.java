@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.kmasocialnetworkct2.R;
 import com.example.kmasocialnetworkct2.adapters.FragmentsChatsAdapter;
@@ -73,5 +74,11 @@ public class ChatsActivity extends AppCompatActivity {
                 break;
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+            finish();
+            return;
     }
 }

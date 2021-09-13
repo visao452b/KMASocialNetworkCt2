@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-
+    private long backPressedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,5 +117,18 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+//            super.onBackPressed();
+            finishAffinity();
+            return;
+        } else {
+            Toast.makeText(this, "Press back again to exit the application", Toast.LENGTH_SHORT).show();
+        }
+        backPressedTime = System.currentTimeMillis();
     }
 }

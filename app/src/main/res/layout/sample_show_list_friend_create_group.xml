@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_imageFriendFragment"
+        android:id="@+id/profile_imageShowFriend"
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:layout_marginLeft="5dp"
         android:padding="5dp"
         android:src="@drawable/user"
-        app:civ_border_color="@color/white"
         app:civ_border_width="2dp" />
 
     <LinearLayout
@@ -30,7 +29,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/userNameFriendFragment"
+                android:id="@+id/userNameListShowFriend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
@@ -40,7 +39,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/emailFriendFragment"
+                android:id="@+id/emailShowFriend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="2dp"
@@ -49,28 +48,10 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/btnRemoveFriendFriendFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:src="@drawable/ic_cancel" />
-
-            <ImageView
-                android:id="@+id/btnMessageFriendFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:src="@drawable/ic_chat" />
-        </LinearLayout>
 
     </LinearLayout>
+
+
 
 
 </LinearLayout>

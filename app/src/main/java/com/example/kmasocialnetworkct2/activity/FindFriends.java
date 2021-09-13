@@ -96,7 +96,7 @@ public class FindFriends extends AppCompatActivity {
 //                                    binding.tvFriend.setText(listFriend.get(i).getEmail());
 
                                     friend = new Friends(listFriend.get(i).getUserName(), listFriend.get(i).getUserId(), listFriend.get(i).getProfilepic(), listFriend.get(i).getEmail());
-
+                                    binding.friendFind.setVisibility(View.VISIBLE);
                                     binding.userNameFriend.setVisibility(View.VISIBLE);
                                     binding.profileImageFriend.setVisibility(View.VISIBLE);
                                     binding.btnAddFriend.setVisibility(View.VISIBLE);

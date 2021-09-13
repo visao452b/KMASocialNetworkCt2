@@ -34,9 +34,8 @@ public class FriendsFragment extends Fragment {
 
     FragmentsFriendsBinding binding;
     ArrayList<Friends> list = new ArrayList<>();
-    FirebaseDatabase database, database2;
+    FirebaseDatabase database;
     FirebaseAuth auth;
-    Users user;
 
     @Nullable
     @org.jetbrains.annotations.Nullable

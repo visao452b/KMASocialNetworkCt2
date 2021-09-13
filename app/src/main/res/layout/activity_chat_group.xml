@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    tools:context=".activity.ChatDetailActivity">
-
+    tools:context=".activity.ChatGroupActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -24,7 +22,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/backArrow"
+                android:id="@+id/backArrowChatGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -37,7 +35,7 @@
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/user" />
+                android:src="@drawable/ic_group" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,10 +45,10 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/userName"
+                    android:id="@+id/groupNameChatGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User Name"
+                    android:text="Group Name"
                     android:textColor="@color/colorPrimaryRed"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -74,11 +72,10 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/send"
+        app:layout_constraintEnd_toStartOf="@+id/sendChatGroup"
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
@@ -88,7 +85,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/edtMessage"
+                android:id="@+id/edtMessageChatGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -121,18 +118,17 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chatRecyclarView"
+        android:id="@+id/chatGroupRecyclarView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="visible"
-        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
-        android:id="@+id/send"
+        android:id="@+id/sendChatGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -144,5 +140,4 @@
         app:srcCompat="@drawable/ic_send"
         app:tint="@color/white"
         tools:ignore="VectorDrawableCompat" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
