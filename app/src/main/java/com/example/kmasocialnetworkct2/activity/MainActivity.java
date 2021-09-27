@@ -16,6 +16,7 @@ import com.example.kmasocialnetworkct2.animation.DepthPageTransformer;
 import com.example.kmasocialnetworkct2.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import org.jetbrains.annotations.NotNull;
@@ -23,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     private long backPressedTime;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +117,11 @@ public class MainActivity extends AppCompatActivity {
         } else if (item.getItemId() == R.id.btnMessage) {
             Intent intent  = new Intent(MainActivity.this, ChatsActivity.class);
             startActivity(intent);
+        } else if (item.getItemId() == R.id.btnCreateGroup) {
+            Intent intent = new Intent(MainActivity.this, CreateGroup.class);
+            startActivity(intent);
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -130,5 +136,21 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Press back again to exit the application", Toast.LENGTH_SHORT).show();
         }
         backPressedTime = System.currentTimeMillis();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String currentId = FirebaseAuth.getInstance().getUid();
+        database = FirebaseDatabase.getInstance();
+        database.getReference().child("presence").child(currentId).setValue("Online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        String currentId = FirebaseAuth.getInstance().getUid();
+        database = FirebaseDatabase.getInstance();
+        database.getReference().child("presence").child(currentId).setValue("Offline");
     }
 }

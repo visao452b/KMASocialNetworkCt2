@@ -12,6 +12,7 @@ import com.example.kmasocialnetworkct2.databinding.ActivityResetPasswordBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 

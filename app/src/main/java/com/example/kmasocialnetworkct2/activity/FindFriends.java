@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class FindFriends extends AppCompatActivity {
+public class  FindFriends extends AppCompatActivity {
     ActivityFindFriendsBinding binding;
     FirebaseDatabase database;
     DatabaseReference reference;
@@ -143,5 +143,19 @@ public class FindFriends extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String currentId = FirebaseAuth.getInstance().getUid();
+        database.getReference().child("presence").child(currentId).setValue("Online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        String currentId = FirebaseAuth.getInstance().getUid();
+        database.getReference().child("presence").child(currentId).setValue("Offline");
     }
 }

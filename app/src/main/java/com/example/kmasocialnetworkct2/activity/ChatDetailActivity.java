@@ -83,8 +83,9 @@ public class ChatDetailActivity extends AppCompatActivity {
         binding.backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChatDetailActivity.this, ChatsActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(ChatDetailActivity.this, ChatsActivity.class);
+//                startActivity(intent);
+                onBackPressed();
 
             }
         });
@@ -225,7 +226,6 @@ public class ChatDetailActivity extends AppCompatActivity {
                 });
 
                 String title = "New message from "+uName;
-//                Log.e(TAG, tk);
             }
         });
 
@@ -316,6 +316,12 @@ public class ChatDetailActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
     }
 
     @Override

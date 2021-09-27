@@ -45,8 +45,9 @@ public class ChatGroupActivity extends AppCompatActivity {
         binding.backArrowChatGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChatGroupActivity.this, ChatsActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(ChatGroupActivity.this, ChatsActivity.class);
+//                startActivity(intent);
+                onBackPressed();
             }
         });
 
@@ -108,5 +109,25 @@ public class ChatGroupActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        return;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String currentId = FirebaseAuth.getInstance().getUid();
+        database.getReference().child("presence").child(currentId).setValue("Online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        String currentId = FirebaseAuth.getInstance().getUid();
+        database.getReference().child("presence").child(currentId).setValue("Offline");
     }
 }

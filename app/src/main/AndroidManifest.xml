@@ -10,7 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KMASocialNetworkCt2">
-        <activity android:name=".activity.ChatGroupActivity"></activity>
+        <activity android:name=".activity.ProfileSetting"></activity>
+        <activity android:name=".activity.ChangePassword" />
+        <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.GroupActivity" />
+        <activity android:name=".activity.CreateGroup2" />
+        <activity android:name=".activity.CreateGroup" />
+        <activity android:name=".activity.ChatGroupActivity" />
         <activity android:name=".activity.CreateChatGroup2" />
         <activity android:name=".activity.CreateChatGroup" />
         <activity android:name=".activity.ChatDetailActivity" />

@@ -13,11 +13,14 @@ import com.example.kmasocialnetworkct2.adapters.FragmentsChatsAdapter;
 import com.example.kmasocialnetworkct2.animation.DepthPageTransformer;
 import com.example.kmasocialnetworkct2.databinding.ActivityChatsBinding;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
 public class ChatsActivity extends AppCompatActivity {
     ActivityChatsBinding binding;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +81,21 @@ public class ChatsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-            finish();
-            return;
+        finish();
+        return;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String currentId = FirebaseAuth.getInstance().getUid();
+        database.getReference().child("presence").child(currentId).setValue("Online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        String currentId = FirebaseAuth.getInstance().getUid();
+        database.getReference().child("presence").child(currentId).setValue("Offline");
     }
 }
