@@ -1,8 +1,8 @@
 package com.example.kmasocialnetworkct2.adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.provider.ContactsContract;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kmasocialnetworkct2.R;
 import com.example.kmasocialnetworkct2.databinding.SamplePostBinding;
+import com.example.kmasocialnetworkct2.models.ListFeeling;
+import com.example.kmasocialnetworkct2.models.Participants;
 import com.example.kmasocialnetworkct2.models.Posts;
 import com.example.kmasocialnetworkct2.models.Users;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -30,9 +34,11 @@ import java.util.Date;
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
     Context contex;
     ArrayList<Posts> listPosts;
+//    ArrayList<ListFeeling> listFeelings;
+    ListFeeling listFeeling;
 
     Users users;
-    String like;
+//    String like;
 
 
     FirebaseDatabase database;
@@ -54,6 +60,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     public void onBindViewHolder(@NonNull @NotNull PostAdapter.PostViewHolder holder, int position) {
         database = FirebaseDatabase.getInstance();
         Posts posts = listPosts.get(position);
+        String id = FirebaseAuth.getInstance().getUid();
 
         if (posts.getUserIdPost() != null) {
             database.getReference().child("Users").child(posts.getUserIdPost()).addValueEventListener(new ValueEventListener() {
@@ -66,6 +73,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                     SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm");
                     holder.binding.timePostStatus.setText(dateFormat.format(new Date(time)));
                     holder.binding.contentPost.setText(posts.getContentPost());
+                    holder.binding.sizeTim.setText(String.valueOf(posts.getFeeling()));
                 }
 
                 @Override
@@ -74,7 +82,58 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                 }
             });
         }
+        database.getReference().child("Posts").child(posts.getPostId()).child("ListFeeling").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    String fl = dataSnapshot.getValue(String.class);
+                    if (fl.equals(id)){
+                        holder.binding.tim0.setVisibility(View.GONE);
+                        holder.binding.tim1.setVisibility(View.VISIBLE);
+                    }
+                }
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        holder.binding.tim0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.binding.tim0.setVisibility(View.GONE);
+                holder.binding.tim1.setVisibility(View.VISIBLE);
+                database.getReference().child("Posts").child(posts.getPostId()).child("ListFeeling").child(id).setValue(id).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        int count = posts.getFeeling() +1;
+                        database.getReference().child("Posts").child(posts.getPostId()).child("feeling").setValue(count);
+                    }
+                });
+
+            }
+        });
+
+        holder.binding.tim1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.binding.tim1.setVisibility(View.GONE);
+                holder.binding.tim0.setVisibility(View.VISIBLE);
+                database.getReference().child("Posts").child(posts.getPostId()).child("ListFeeling").child(id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        int count = posts.getFeeling() -1;
+                        database.getReference().child("Posts").child(posts.getPostId()).child("feeling").setValue(count);
+                    }
+                });
+
+            }
+        });
 
 //        database.getReference().child("Posts").child(posts.getPostId()).child("feeling").addValueEventListener(new ValueEventListener() {
 //            @Override

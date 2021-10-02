@@ -76,6 +76,7 @@ public class CreateGroup2 extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         String currentId = FirebaseAuth.getInstance().getUid();
+        database = FirebaseDatabase.getInstance();
         database.getReference().child("presence").child(currentId).setValue("Online");
     }
 
@@ -83,6 +84,7 @@ public class CreateGroup2 extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         String currentId = FirebaseAuth.getInstance().getUid();
+        database = FirebaseDatabase.getInstance();
         database.getReference().child("presence").child(currentId).setValue("Offline");
     }
 }

@@ -4,8 +4,19 @@ public class Posts {
     String userPost, contentPost, userIdPost, postId;
     Long timePost;
     int feeling;
+    ListFeeling listFeeling;
 
     public Posts() {
+    }
+
+    public Posts(String userPost, String contentPost, String userIdPost, String postId, Long timePost, int feeling, ListFeeling listFeeling) {
+        this.userPost = userPost;
+        this.contentPost = contentPost;
+        this.userIdPost = userIdPost;
+        this.postId = postId;
+        this.timePost = timePost;
+        this.feeling = feeling;
+        this.listFeeling = listFeeling;
     }
 
     public Posts(String userPost, String contentPost, String userIdPost, String postId, Long timePost, int feeling) {
@@ -84,5 +95,13 @@ public class Posts {
 
     public void setPostId(String postId) {
         this.postId = postId;
+    }
+
+    public ListFeeling getListFeeling() {
+        return listFeeling;
+    }
+
+    public void setListFeeling(ListFeeling listFeeling) {
+        this.listFeeling = listFeeling;
     }
 }

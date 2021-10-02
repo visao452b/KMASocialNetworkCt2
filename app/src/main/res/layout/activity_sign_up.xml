@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".activity.SignUpActivity"
     android:orientation="vertical"
+    android:layout_margin="30dp"
     android:gravity="center">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:src="@drawable/logo" />
+        android:src="@drawable/ic_send" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

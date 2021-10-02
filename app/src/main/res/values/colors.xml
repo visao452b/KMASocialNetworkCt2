@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="colorPrimaryRed">#ee2e2a</color>
-    <color name="colorPrimaryYellow">#ffc20e</color>
+    <color name="colorPrimaryRed">#4e9feb</color>
+    <color name="colorPrimaryYellow">#4e9feb</color>
     <color name="grey">#a49e96</color>
 </resources>

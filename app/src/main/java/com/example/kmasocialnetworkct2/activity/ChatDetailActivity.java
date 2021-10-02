@@ -327,6 +327,7 @@ public class ChatDetailActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        database = FirebaseDatabase.getInstance();
         String currentId = FirebaseAuth.getInstance().getUid();
         database.getReference().child("presence").child(currentId).setValue("Online");
     }
@@ -334,6 +335,7 @@ public class ChatDetailActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        database = FirebaseDatabase.getInstance();
         String currentId = FirebaseAuth.getInstance().getUid();
         database.getReference().child("presence").child(currentId).setValue("Offline");
     }

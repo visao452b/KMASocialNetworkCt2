@@ -10,6 +10,7 @@
         android:id="@+id/titelGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Say Hi"
         android:textSize="25dp"
         android:textStyle="bold" />
 
@@ -24,10 +25,11 @@
         android:id="@+id/floatingAddFriend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_send"
+        android:src="@drawable/ic_right_arrow"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        app:backgroundTint="@color/grey"
+        app:tint="@color/white"
+        app:backgroundTint="@color/colorPrimaryRed"
         android:layout_margin="16dp"/>
 
 </RelativeLayout>

@@ -12,10 +12,11 @@
         android:id="@+id/floatingAddChatGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_add"
+        android:src="@drawable/ic_add_chat"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        app:backgroundTint="@color/grey"
+        app:backgroundTint="@color/colorPrimaryRed"
+        app:tint="@color/white"
         android:layout_margin="16dp"/>
 
 </RelativeLayout>

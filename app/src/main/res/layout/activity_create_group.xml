@@ -12,7 +12,7 @@
         android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:src="@drawable/logo" />
+        android:src="@drawable/ic_send" />
 
     <TextView
         android:id="@+id/textView"
@@ -35,7 +35,8 @@
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/nameGroupChat"
+        android:layout_below="@+id/nameGroup"
+        android:backgroundTint="@color/colorPrimaryRed"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="0dp"
         android:text="Tạo nhóm" />

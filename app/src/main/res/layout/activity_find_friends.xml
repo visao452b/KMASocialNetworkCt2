@@ -17,10 +17,10 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="200dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:src="@drawable/logo"
+            android:src="@drawable/ic_send"
             tools:ignore="VectorDrawableCompat" />
 
 
@@ -30,9 +30,9 @@
             android:id="@+id/edtFindFriends"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:ems="10"
             android:hint="Enter Email"
+            android:background="@drawable/border_edt"
             android:inputType="textEmailAddress"
             android:padding="9dp" />
 
