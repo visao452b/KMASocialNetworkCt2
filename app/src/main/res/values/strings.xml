@@ -5,4 +5,6 @@
     <string name="bottom_menu">Menu</string>
     <string name="bottom_friend">Friends</string>
     <string name="bottom_notification">Noti</string>
+    <string name="channel_name">Channel 1</string>
+    <string name="channel_description">This is channel 1</string>
 </resources>

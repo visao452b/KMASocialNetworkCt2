@@ -2,6 +2,7 @@ package com.example.kmasocialnetworkct2.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -14,17 +15,24 @@ import com.example.kmasocialnetworkct2.R;
 import com.example.kmasocialnetworkct2.adapters.FragmentsAdapter;
 import com.example.kmasocialnetworkct2.animation.DepthPageTransformer;
 import com.example.kmasocialnetworkct2.databinding.ActivityMainBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 
 import org.jetbrains.annotations.NotNull;
+
+import static com.google.firebase.messaging.Constants.TAG;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     private long backPressedTime;
     FirebaseDatabase database;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +149,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+
+                        auth = FirebaseAuth.getInstance();
+
+                        // Log and toast
+                        Log.e(TAG, token);
+                        database.getReference().child("Token").child(auth.getUid()).setValue(token).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Log.e("Token", "onSuccess");
+                            }
+                        });
+                    }
+                });
+
         String currentId = FirebaseAuth.getInstance().getUid();
         database = FirebaseDatabase.getInstance();
         database.getReference().child("presence").child(currentId).setValue("Online");
@@ -149,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        database = FirebaseDatabase.getInstance();
         String currentId = FirebaseAuth.getInstance().getUid();
         database = FirebaseDatabase.getInstance();
         database.getReference().child("presence").child(currentId).setValue("Offline");

@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.kmasocialnetworkct2.Notifications.FcmNotificationsSender;
 import com.example.kmasocialnetworkct2.R;
 import com.example.kmasocialnetworkct2.adapters.ChatAdapter;
 import com.example.kmasocialnetworkct2.databinding.ActivityChatDetailBinding;
@@ -226,6 +227,9 @@ public class ChatDetailActivity extends AppCompatActivity {
                 });
 
                 String title = "New message from "+uName;
+                Log.e(TAG, tk);
+                FcmNotificationsSender notificationsSender = new FcmNotificationsSender(tk, title, messageTxt, getApplication(), ChatDetailActivity.this);
+                notificationsSender.SendNotifications();
             }
         });
 
