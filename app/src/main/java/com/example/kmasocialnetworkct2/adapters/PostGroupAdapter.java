@@ -1,21 +1,16 @@
 package com.example.kmasocialnetworkct2.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.kmasocialnetworkct2.R;
-import com.example.kmasocialnetworkct2.activity.CommentsActivity;
-import com.example.kmasocialnetworkct2.activity.GroupActivity;
 import com.example.kmasocialnetworkct2.databinding.SamplePostBinding;
-import com.example.kmasocialnetworkct2.models.Comments;
 import com.example.kmasocialnetworkct2.models.Posts;
 import com.example.kmasocialnetworkct2.models.Users;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,30 +27,34 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
+public class PostGroupAdapter extends RecyclerView.Adapter<PostGroupAdapter.PostGroupViewHolder> {
     Context contex;
     ArrayList<Posts> listPosts;
-    ArrayList<Comments> listComments = new ArrayList<>();
+    String groupId;
+
+    public PostGroupAdapter(Context contex, ArrayList<Posts> listPosts, String groupId) {
+        this.contex = contex;
+        this.listPosts = listPosts;
+        this.groupId = groupId;
+    }
 
     Users users;
+
+
     FirebaseDatabase database;
 
 
-    public PostAdapter(Context contex, ArrayList<Posts> listPosts) {
-        this.contex = contex;
-        this.listPosts = listPosts;
-    }
 
     @NonNull
     @NotNull
     @Override
-    public PostAdapter.PostViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public PostGroupAdapter.PostGroupViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(contex).inflate(R.layout.sample_post, parent, false);
-        return new PostViewHolder(view);
+        return new PostGroupViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull PostAdapter.PostViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull PostGroupAdapter.PostGroupViewHolder holder, int position) {
         database = FirebaseDatabase.getInstance();
         Posts posts = listPosts.get(position);
         String id = FirebaseAuth.getInstance().getUid();
@@ -71,13 +70,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                     SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm");
                     holder.binding.timePostStatus.setText(dateFormat.format(new Date(time)));
                     holder.binding.contentPost.setText(posts.getContentPost());
-                    if (posts.getFeeling() < 0) {
+                    if (posts.getFeeling()<0){
                         database.getReference().child("Posts").child(posts.getPostId()).child("feeling").setValue(0);
                         holder.binding.sizeTim.setText("0");
-                    } else {
+                    }else {
                         holder.binding.sizeTim.setText(String.valueOf(posts.getFeeling()));
                     }
-
                 }
 
                 @Override
@@ -86,16 +84,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                 }
             });
         }
-        database.getReference().child("Posts").child(posts.getPostId()).child("ListFeeling").addValueEventListener(new ValueEventListener() {
+        database.getReference().child("PostsGroup").child(groupId).child(posts.getPostId()).child("ListFeeling").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     String fl = dataSnapshot.getValue(String.class);
-                    if (fl.equals(id)) {
+                    if (fl.equals(id)){
                         holder.binding.tim0.setVisibility(View.GONE);
                         holder.binding.tim1.setVisibility(View.VISIBLE);
                     }
                 }
+
             }
 
             @Override
@@ -104,34 +103,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             }
         });
 
-        database.getReference().child("Posts").child(posts.getPostId()).child("comments").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    listComments.clear();
-                    for (DataSnapshot dataSnapshot1 : snapshot.getChildren()){
-                        Comments comments = dataSnapshot1.getValue(Comments.class);
-                        listComments.add(comments);
-                    }
-                    holder.binding.sizeComments.setText(String.valueOf(listComments.size()));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });
-        holder.binding.btnComment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (posts.getPostId() != null) {
-                    Intent intent = new Intent(contex, CommentsActivity.class);
-                    intent.putExtra("postID", posts.getPostId());
-                    contex.startActivity(intent);
-                }
-            }
-        });
 
 
         holder.binding.tim0.setOnClickListener(new View.OnClickListener() {
@@ -139,11 +110,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             public void onClick(View v) {
                 holder.binding.tim0.setVisibility(View.GONE);
                 holder.binding.tim1.setVisibility(View.VISIBLE);
-                database.getReference().child("Posts").child(posts.getPostId()).child("ListFeeling").child(id).setValue(id).addOnSuccessListener(new OnSuccessListener<Void>() {
+                database.getReference().child("PostsGroup").child(groupId).child(posts.getPostId()).child("ListFeeling").child(id).setValue(id).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        int count = posts.getFeeling() + 1;
-                        database.getReference().child("Posts").child(posts.getPostId()).child("feeling").setValue(count);
+                        int count = posts.getFeeling() +1;
+                        database.getReference().child("PostsGroup").child(groupId).child(posts.getPostId()).child("feeling").setValue(count);
                     }
                 });
 
@@ -155,11 +126,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             public void onClick(View v) {
                 holder.binding.tim1.setVisibility(View.GONE);
                 holder.binding.tim0.setVisibility(View.VISIBLE);
-                database.getReference().child("Posts").child(posts.getPostId()).child("ListFeeling").child(id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                database.getReference().child("PostsGroup").child(groupId).child(posts.getPostId()).child("ListFeeling").child(id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        int count = posts.getFeeling() - 1;
-                        database.getReference().child("Posts").child(posts.getPostId()).child("feeling").setValue(count);
+                        int count = posts.getFeeling() -1;
+                        database.getReference().child("PostsGroup").child(groupId).child(posts.getPostId()).child("feeling").setValue(count);
                     }
                 });
 
@@ -173,11 +144,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         return listPosts.size();
     }
 
-    public class PostViewHolder extends RecyclerView.ViewHolder {
+    public class PostGroupViewHolder extends RecyclerView.ViewHolder {
 
         SamplePostBinding binding;
 
-        public PostViewHolder(@NonNull @NotNull View itemView) {
+        public PostGroupViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
 
             binding = SamplePostBinding.bind(itemView);

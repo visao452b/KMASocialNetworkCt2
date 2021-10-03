@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_imageShowUserCMPost"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="5dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_avatar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/border_edt">
+
+
+            <TextView
+                android:id="@+id/userNameCMPost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="User Name Post"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/contentComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/black"
+                android:paddingLeft="20dp"
+                android:text="- Tính đến chiều ngày 28/7, Việt Nam có tổng 2.207 ca nhập cảnh và 118.612 ca mắc trong nước. - Số ca mắc mới ghi nhận trong nước tính của đợt dịch kể từ 27/4 đến nay là 117.042 ca, trong đó có 24.683 bệnh nhân đã được công bố khỏi bệnh."
+                android:textSize="25dp" />
+            <TextView
+                android:id="@+id/timeCMPostStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="02:06 SA"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

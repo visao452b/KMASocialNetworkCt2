@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,101 +7,107 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
-
-        <RelativeLayout
-            android:id="@+id/image_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_centerInParent="true"
-                android:padding="6dp"
-                android:src="@drawable/ic_add"
-                app:tint="@color/colorPrimaryRed"/>
-
-
-            <com.devlomi.circularstatusview.CircularStatusView
-                android:id="@+id/circular"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_centerInParent="true"
-                app:portion_color="@color/colorPrimaryRed"
-                app:portion_spacing="4dp"
-                app:portion_width="4dp"
-                app:portions_count="10" />
-        </RelativeLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/status.list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/border_edt"
-        android:orientation="horizontal">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_imagePost"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="5dp"
-            android:padding="5dp"
-            android:src="@drawable/ic_avatar"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="2dp" />
-
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/edtPost"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/border_toolbar"
-                android:ems="10"
-                android:hint="What's on your mind?"
-                android:inputType="text"
-                android:minHeight="40dp" />
+            <RelativeLayout
+                android:id="@+id/image_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/btnPost"
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:src="@drawable/ic_send"
-                app:tint="@color/colorPrimaryRed" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerInParent="true"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_add"
+                    app:tint="@color/colorPrimaryRed"/>
+
+
+                <com.devlomi.circularstatusview.CircularStatusView
+                    android:id="@+id/circular"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerInParent="true"
+                    app:portion_color="@color/colorPrimaryRed"
+                    app:portion_spacing="4dp"
+                    app:portion_width="4dp"
+                    app:portions_count="10" />
+            </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/status.list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_edt"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_imagePost"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="5dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_avatar"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="2dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edtPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/border_toolbar"
+                    android:ems="10"
+                    android:hint="What's on your mind?"
+                    android:inputType="text"
+                    android:minHeight="40dp" />
+
+                <ImageView
+                    android:id="@+id/btnPost"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/ic_send"
+                    app:tint="@color/colorPrimaryRed" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_post"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_post"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp">
-    </androidx.recyclerview.widget.RecyclerView>
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

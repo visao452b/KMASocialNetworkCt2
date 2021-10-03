@@ -5,6 +5,18 @@ public class Posts {
     Long timePost;
     int feeling;
     ListFeeling listFeeling;
+    Comments comments;
+
+    public Posts(String userPost, String contentPost, String userIdPost, String postId, Long timePost, int feeling, ListFeeling listFeeling, Comments comments) {
+        this.userPost = userPost;
+        this.contentPost = contentPost;
+        this.userIdPost = userIdPost;
+        this.postId = postId;
+        this.timePost = timePost;
+        this.feeling = feeling;
+        this.listFeeling = listFeeling;
+        this.comments = comments;
+    }
 
     public Posts() {
     }

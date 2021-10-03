@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.kmasocialnetworkct2.R;
 import com.example.kmasocialnetworkct2.adapters.PostAdapter;
+import com.example.kmasocialnetworkct2.adapters.PostGroupAdapter;
 import com.example.kmasocialnetworkct2.databinding.ActivityGroupBinding;
 import com.example.kmasocialnetworkct2.models.Groups;
 import com.example.kmasocialnetworkct2.models.Participants;
@@ -87,7 +88,7 @@ public class GroupActivity extends AppCompatActivity {
                     }
                 });
 
-        PostAdapter postAdapter = new PostAdapter(getApplicationContext(), listPost);
+        PostGroupAdapter postAdapter = new PostGroupAdapter(getApplicationContext(), listPost, groupId);
 
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(getApplicationContext());
         binding.listPostGroup.setLayoutManager(layoutManager1);
