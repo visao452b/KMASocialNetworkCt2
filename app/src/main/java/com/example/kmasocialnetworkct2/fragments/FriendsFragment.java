@@ -62,8 +62,10 @@ public class FriendsFragment extends Fragment {
                 }
                 adapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(DatabaseError error) {
+
             }
         });
 

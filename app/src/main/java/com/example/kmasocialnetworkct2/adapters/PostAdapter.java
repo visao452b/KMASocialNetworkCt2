@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.kmasocialnetworkct2.R;
 import com.example.kmasocialnetworkct2.activity.CommentsActivity;
 import com.example.kmasocialnetworkct2.activity.GroupActivity;
+import com.example.kmasocialnetworkct2.activity.ProfileActivity;
 import com.example.kmasocialnetworkct2.databinding.SamplePostBinding;
 import com.example.kmasocialnetworkct2.models.Comments;
 import com.example.kmasocialnetworkct2.models.Posts;
@@ -73,7 +74,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                     holder.binding.contentPost.setText(posts.getContentPost());
                     if (posts.getFeeling() < 0) {
                         database.getReference().child("Posts").child(posts.getPostId()).child("feeling").setValue(0);
-                        holder.binding.sizeTim.setText("0");
+                    } else if (posts.getFeeling()==0){
+                        holder.binding.tim0.setVisibility(View.VISIBLE);
+                        holder.binding.tim1.setVisibility(View.GONE);
                     } else {
                         holder.binding.sizeTim.setText(String.valueOf(posts.getFeeling()));
                     }
@@ -130,6 +133,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                     intent.putExtra("postID", posts.getPostId());
                     contex.startActivity(intent);
                 }
+            }
+        });
+
+        holder.binding.profileImageShowUserPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentP = new Intent(contex, ProfileActivity.class);
+                intentP.putExtra("uId", posts.getUserIdPost());
+                contex.startActivity(intentP);
             }
         });
 

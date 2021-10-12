@@ -42,6 +42,7 @@ public class MenuFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         user = snapshot.getValue(Users.class);
                         Picasso.get().load(user.getProfilepic()).placeholder(R.drawable.ic_avatar).into(binding.profileImage);
+                        binding.userNameFriendFragment.setText(user.getUserName());
                     }
 
                     @Override

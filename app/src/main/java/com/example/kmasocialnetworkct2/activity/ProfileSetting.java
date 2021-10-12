@@ -43,9 +43,12 @@ public class ProfileSetting extends AppCompatActivity {
         database.getReference().child("Profiles").child(uId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                ProfileUser profileUser = snapshot.getValue(ProfileUser.class);
-                binding.edtWork.setText(profileUser.getWork());
-                binding.edtLive.setText(profileUser.getLive());
+                if (snapshot.getValue()!=null){
+                    ProfileUser profileUser = snapshot.getValue(ProfileUser.class);
+                    binding.edtWork.setText(profileUser.getWork());
+                    binding.edtLive.setText(profileUser.getLive());
+                }
+
             }
 
             @Override
@@ -74,19 +77,7 @@ public class ProfileSetting extends AppCompatActivity {
         binding.btnSaveProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                binding.spnGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                    @Override
-//                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-////                        String[] arr = getResources().getStringArray(R.array.Gender);
-////                        gender = arr[position];
-//                        gender = parent.getItemAtPosition(position).toString();
-//                    }
-//
-//                    @Override
-//                    public void onNothingSelected(AdapterView<?> parent) {
-//
-//                    }
-//                });
+
                 profileUser = new ProfileUser(binding.edtLive.getText().toString(), binding.edtWork.getText().toString());
                 database.getReference().child("Profiles").child(uId).setValue(profileUser).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

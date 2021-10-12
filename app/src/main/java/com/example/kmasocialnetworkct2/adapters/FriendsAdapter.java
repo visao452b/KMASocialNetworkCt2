@@ -13,14 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kmasocialnetworkct2.R;
 import com.example.kmasocialnetworkct2.activity.ChatDetailActivity;
+import com.example.kmasocialnetworkct2.activity.ProfileActivity;
 import com.example.kmasocialnetworkct2.databinding.AlertDialogDeleteFriendBinding;
 import com.example.kmasocialnetworkct2.databinding.SampleShowFriendBinding;
 import com.example.kmasocialnetworkct2.models.Friends;
 
+import com.example.kmasocialnetworkct2.models.Users;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -53,9 +58,25 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
         database = FirebaseDatabase.getInstance();
 
         Friends friend = list.get(position);
-        if (friend.getProfilepic()!= null){
-            Picasso.get().load(friend.getProfilepic()).placeholder(R.drawable.ic_friend).into(holder.binding.profileImageFriendFragment);
-        }
+        database.getReference().child("Users").child(friend.getFriendId())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Users users = snapshot.getValue(Users.class);
+                        Picasso.get()
+                                .load(users.getProfilepic())
+                                .placeholder(R.drawable.ic_avatar)
+                                .into(holder.binding.profileImageFriendFragment);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+//        if (friend.getProfilepic()!= null){
+//            Picasso.get().load(friend.getProfilepic()).placeholder(R.drawable.ic_friend).into(holder.binding.profileImageFriendFragment);
+//        }
         holder.binding.userNameFriendFragment.setText(friend.getFriendName());
         holder.binding.emailFriendFragment.setText(friend.getEmailFriend());
 
@@ -74,6 +95,15 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
                 intent.putExtra("profilePic", friend.getProfilepic());
                 intent.putExtra("userName", friend.getFriendName());
                 context.startActivity(intent);
+            }
+        });
+
+        holder.binding.profileImageFriendFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentP = new Intent(context, ProfileActivity.class);
+                intentP.putExtra("uId", friend.getFriendId());
+                context.startActivity(intentP);
             }
         });
     }

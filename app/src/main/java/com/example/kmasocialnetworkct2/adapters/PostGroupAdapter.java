@@ -1,6 +1,7 @@
 package com.example.kmasocialnetworkct2.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.kmasocialnetworkct2.R;
+import com.example.kmasocialnetworkct2.activity.ProfileActivity;
 import com.example.kmasocialnetworkct2.databinding.SamplePostBinding;
 import com.example.kmasocialnetworkct2.models.Posts;
 import com.example.kmasocialnetworkct2.models.Users;
@@ -103,7 +105,14 @@ public class PostGroupAdapter extends RecyclerView.Adapter<PostGroupAdapter.Post
             }
         });
 
-
+        holder.binding.profileImageShowUserPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentP = new Intent(contex, ProfileActivity.class);
+                intentP.putExtra("uId", posts.getUserIdPost());
+                contex.startActivity(intentP);
+            }
+        });
 
         holder.binding.tim0.setOnClickListener(new View.OnClickListener() {
             @Override
